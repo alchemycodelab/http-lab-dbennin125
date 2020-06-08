@@ -2,8 +2,10 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 
+
 describe('createResponse', () => {
-  it('get route', () => {
+  
+  it('get home route', () => {
     
     return request(app)
       .get('/')
@@ -11,6 +13,16 @@ describe('createResponse', () => {
         expect(res.text).toEqual('hi');
       });
   });
+
+  it('get bad route', () => {
+
+    return request(app)
+      .get('/wrong')
+      .then(res => {
+        expect(res.text).toEqual('Not Found');
+      });
+  });
+
   it('get red route', () => {
     
     return request(app)
@@ -35,7 +47,7 @@ describe('createResponse', () => {
         expect(res.text).toEqual('<h1>blue</h1>');
       });
   });
-  it('get echo route working', () => {
+  it('get echo route', () => {
     const requestedResponse = 
     {        
       body: 'Yolo',
