@@ -20,6 +20,7 @@ describe('createResponse', () => {
       .get('/wrong')
       .then(res => {
         expect(res.text).toEqual('Not Found');
+        expect(res.status).toEqual(404);
       });
   });
 
